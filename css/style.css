@@ -125,6 +125,7 @@ body,
     background: #ffd700;
     border: none;
     transition: .3s ease-in-out;
+	pointer-events: none;
   }
   .home {
 	  margin-left:0%;
