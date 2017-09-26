@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+
+.icon {
+  padding: 10px;
+}
+@media (max-width: 767px) {
+  .icon {
+    position: absolute;
+    left: 50%;
+   	margin-left: -32px !important;
+    display: block;
+  }
+}
+.navbar-toggle {
+  border: none;
+  background: transparent !important;
+}
+.navbar-toggle:hover {
+  background: transparent !important;
+}
+.navbar-toggle .icon-bar {
+  width: 22px;
+  transition: all 0.2s;
+}
+.navbar-toggle .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+.navbar-toggle .middle-bar {
+  opacity: 0;
+}
+.navbar-toggle .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+.navbar-toggle.collapsed .top-bar {
+  transform: rotate(0);
+}
+.navbar-toggle.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-toggle.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+.containerLogo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  min-height: 400px;
+}
+@media (min-width:768px) {
+  .containerLogo {
+    min-height: 600px;
+  }
+}
+html,
+body,
+.view {
+  height: 100%;
+  min-height:400px;
+}
+.view {
+  background: url('../images/background.png')no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+@media (min-width: 768px) {
+  .btn-responsive {
+    font-size:125%;
+	line-height:2
+  }
+}
+@media (min-width: 768px) {
+  .navbar-nav {
+	position:relative;
+	width: 50%;
+	min-width: 650px;
+  }
+  .navbar-nav > li {
+	width: 20%;
+  }
+  ul li {
+	display:inline;
+	text-align: center;
+  }
+  .one:hover ~ hr {
+    margin-left: 0%;
+  }
+  .two:hover ~ hr {
+    margin-left: 20%;
+  }
+  .three:hover ~ hr {
+    margin-left: 40%;
+  }
+
+  .four:hover ~ hr {
+    margin-left: 60%;
+  }
+  .five:hover ~ hr {
+    margin-left: 80%;
+  }
+  hr {
+	position:absolute;
+	top:60px;
+    height: 5px;
+    width: 20%;
+	min-width: 130px;
+    background: #ffd700;
+    border: none;
+    transition: .3s ease-in-out;
+	pointer-events: none;
+  }
+  .home {
+	  margin-left:0%;
+  }
+  .about {
+	  margin-left:20%;
+  }
+  .register {
+	  margin-left:40%;
+  }
+  .contactUs {
+	  margin-left:60%;
+  }
+  .FAQ {
+	  margin-left:80%;
+  } 
+}
+@media (max-width: 767px) {
+  hr {
+	display: none;
+  }
+}
