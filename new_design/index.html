@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>hackWHRHS</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="theme-color" content="#ffffff">
+  <script src="js/jquery-1.11.2.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script>
+    $(document).ready(function() {
+      $(".smoothScroll").click(function(event){
+        event.preventDefault();
+        var name = $(this).attr("href").substring(1);
+        $('html,body').animate({
+          scrollTop: $("a[name="+name+"]").offset().top
+        }, 500);
+      });
+      var update = true;
+      $(".activateAbout").click(function(event){
+        stopUpdating();
+        if (isMobile == false) {
+          aboutActive();
+        } else {
+          $("hr").css("display", "none");
+        }
+      });
+      $(".activateRegister").click(function(event){
+        stopUpdating();
+        if (isMobile == false) {
+          registerActive();
+        } else {
+          $("hr").css("display", "none");
+        }
+      });
+      $(".activateContactUs").click(function(event){
+        stopUpdating();
+        if (isMobile == false) {
+          contactUsActive();
+        } else {
+          $("hr").css("display", "none");
+        }
+      });
+      $(".homeContainer").hide();
+      $(".content").hide();
+      $(".homeContainer").fadeIn(2000);
+      $(".content").fadeIn(2000);
+      $(".icon").hide();
+      var fillerHeight = $(window).height() - $(".contactUsContainer").height() - 222;
+      $(".filler").css("height", fillerHeight);
+      var isMobile;
+      if ($(window).width() >= 768){
+        isMobile = false;
+      } else {
+        isMobile = true;
+      }
+      $(window).scroll(function () {
+        if (update == true) {
+          updateStuff();
+        }
+      });
+      $(window).resize(function() {
+        if ($(window).width() >= 768){
+          isMobile = false;
+        } else {
+          isMobile = true;
+        }
+        if (update == true) {
+          updateStuff();
+        }
+      });
+      function stopUpdating(){
+        $(".icon").fadeIn();
+        update = false;
+        setTimeout(
+        function(){
+          update = true;
+        }, 500);
+      }
+      function updateStuff(){
+        var fillerHeight = $(window).height() - $(".contactUsContainer").height() - 222;
+        $(".filler").css("height", fillerHeight);
+        if ($(window).scrollTop() > $(".first").offset().top - 1) {
+          $(".icon").fadeIn();
+        } else {
+          $(".icon").fadeOut();
+        }
+        if ($(window).scrollTop() < $(".first").offset().top - 1) {
+          $(".one").attr("class","one");
+          $(".two").attr("class","two");
+          $(".three").attr("class","three");
+          $("hr").css("display", "none")
+        } else if ($(window).scrollTop() < $(".second").offset().top - 1) {
+          if (isMobile == false) {
+            aboutActive();
+          } else {
+            $("hr").css("display", "none");
+          }
+        } else if ($(window).scrollTop() < $(".third").offset().top - 1) {
+          if (isMobile == false) {
+            registerActive();
+          } else {
+            $("hr").css("display", "none");
+          }
+        } else {
+          if (isMobile == false) {
+            contactUsActive();
+          } else {
+            $("hr").css("display", "none");
+          }
+        }
+      }
+      function aboutActive(){
+        $(".one").attr("class","one active");
+        $(".two").attr("class","two");
+        $(".three").attr("class","three");
+        $("hr").css("display", "block")
+        $("hr").attr("class","slide about");
+      }
+      function registerActive(){
+        $(".one").attr("class","one");
+        $(".two").attr("class","two active");
+        $(".three").attr("class","three");
+        $("hr").css("display", "block")
+        $("hr").attr("class","slide register");
+      }
+      function contactUsActive(){
+        $(".one").attr("class","one");
+        $(".two").attr("class","two");
+        $(".three").attr("class","three active");
+        $("hr").css("display", "block")
+        $("hr").attr("class","slide contactUs");
+      }
+    });
+  </script>
+</head>
+<body class="body">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+        <a class="navbar-brand icon smoothScroll" href="#homeContainer">
+          <img alt="brand" src="images/icon(x64).png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li class="one">
+            <a class="activateAbout smoothScroll" href="#aboutContainer">About</a>
+          </li>
+          <li class="two">
+            <a class="activateRegister smoothScroll" href="#registerContainer">Register</a>
+          </li>
+          <li class="three">
+            <a class="activateContactUs smoothScroll" href="#contactUsContainer">Contact Us</a>
+          </li>
+          <hr class="slide">
+        </ul>
+      </div>
+    </div>
+  </div><a id="homeContainer" name="homeContainer"></a>
+  <div class="homeContainer"><img alt="Logo" class="img-responsive center-block" src="images/logo(256x768).png"></div>
+  <div class="content aboutContainer">
+    <a class="anchor first" id="aboutContainer" name="aboutContainer"></a>
+    <div class="text">
+      <h1>About</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+    </div>
+  </div>
+  <div class="content registerContainer">
+    <a class="anchor second" id="registerContainer" name="registerContainer"></a>
+    <div class="text">
+      <h1>Register</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+    </div>
+  </div>
+  <div class="content contactUsContainer">
+    <a class="anchor third" id="contactUsContainer" name="contactUsContainer"></a>
+    <div class="text">
+      <h1>Contact Us</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur aliquet purus sit amet orci condimentum, at rutrum turpis volutpat. In nisl nibh, euismod ut ultricies eget, tincidunt non eros. Morbi dignissim et augue eu ullamcorper. Nam mollis magna a suscipit porta. Vivamus semper eros quis odio blandit faucibus. Nullam sit amet dolor ut sem tempus ultricies non non turpis. Ut elementum tortor et ipsum scelerisque, vel tincidunt metus suscipit. Curabitur suscipit egestas magna at vestibulum. Praesent tincidunt ligula et dignissim euismod. Pellentesque euismod, nisi at blandit laoreet, urna elit auctor neque, posuere dictum leo orci at metus.</p>
+    </div>
+  </div>
+  <div class="filler"></div>
+  <footer>
+    <p class="footerText">Web Design by Zachary Young, Peter Linder, and Andrew Song</p>
+  </footer>
+</body>
+</html>
