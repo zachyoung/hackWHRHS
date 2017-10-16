@@ -49,7 +49,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 .homeContainer {
   position: relative;
@@ -103,6 +103,9 @@ footer {
   color: white;
 }
 @media (min-width: 768px) {
+  body {
+    background-attachment: fixed;
+  }
   .icon {
     left: 0%;
     margin-left: 0px !important;
