@@ -1,40 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>hackWHRHS</title>
-	<link rel="stylesheet" type="text/css" href="./css/style.css" />
-	<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript" src="./js/main.js"></script>
+  <meta charset="utf-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>hackWHRHS</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon">
+  <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <script src="js/jquery-1.11.2.min.js"></script> 
+  <script src="js/bootstrap.js"></script>
+  <script>
+    $(document).ready(function() {
+	  $(".homeContainer").hide();
+	  $(".content").hide();
+	  $(".homeContainer").fadeIn(2000);
+	  $(".content").fadeIn(2000);
+	  $(".icon").hide();
+	  //Smooth scroll links
+	  $(".smoothScroll").click(function(event){
+	  	event.preventDefault();
+	  	var name = $(this).attr("href").substring(1);
+	  	$('html,body').animate({
+	  		scrollTop: $("a[name="+name+"]").offset().top// - $(".nav-bar").height() - 10
+	  	}, 500);
+	  });
+	  $(window).scroll(function () {
+		  if ($(window).scrollTop() > $(".first").offset().top - 1) {
+			  $(".icon").fadeIn();
+		  } else {
+			  $(".icon").fadeOut();
+		  }
+		  if ($(window).scrollTop() < $(".first").offset().top - 1) {
+		    $(".one").attr("class","one");
+		    $(".two").attr("class","two");
+		    $(".three").attr("class","three");
+		    $("hr").css("display", "none")
+		    $("hr").attr("class","slide");
+		  } else if ($(window).scrollTop() < $(".second").offset().top - 1) {
+		    aboutActive();
+		  } else if ($(window).scrollTop() < $(".third").offset().top - 1) {
+			registerActive();
+		  } else {
+			contactUsActive();
+		  }
+	  });
+	  function aboutActive(){
+        $(".one").attr("class","one active");
+		$(".two").attr("class","two");
+		$(".three").attr("class","three");
+		$("hr").css("display", "block")
+		$("hr").attr("class","slide about");
+      }
+	  function registerActive(){
+		$(".one").attr("class","one");
+		$(".two").attr("class","two active");
+        $(".three").attr("class","three");
+		$("hr").css("display", "block")
+		$("hr").attr("class","slide register");
+      }
+	  function contactUsActive(){
+		$(".one").attr("class","one");
+		$(".two").attr("class","two");
+        $(".three").attr("class","three active");
+		$("hr").css("display", "block")
+		$("hr").attr("class","slide contactUs");
+      }
+	});
+  </script>
 </head>
-<body>
-	<div class="bg"></div>
-	<div class="nav-bar">
-		<ul>
-			<li class="home active"><a href="#home">Home</a></li>
-			<li class="register"><a href="#register">Register</a></li>
-			<li class="about"><a href="#about">About</a></li>
-		</ul>
-	</div>
-	<a name="home"></a>
-	<div class="home">
-		<img src="img/Logo_(256x768).png" alt="hackWHRHS" />
-	</div>
-	<div class="content">
-		<div class="register">
-			<h1><a name="register">Register</a></h1>
-			<p>
-				You only need to register in spirit.
-			</p>
-		</div>
-		<div class="about">
-			<h1><a name="about">About</a></h1>
-			<p>
-				I'm a simple man with simple tastes.
-			</p>
-		</div>
-		<div class="social-media">
-			Follow us on social media
-		</div>
-	</div>
+<body class="body">
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-target="#navbar" data-toggle="collapse" type="button">
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+        <a class="navbar-brand icon smoothScroll" href="#homeContainer">
+          <img alt="brand" src="images/Icon_(64x64).png">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li class="one">
+            <a href="#aboutContainer" class="smoothScroll">About</a>
+          </li>
+          <li class="two">
+            <a href="#faqContainer" class="smoothScroll">FAQ</a>
+          </li>
+          <li class="three">
+            <a href="#registerContainer" class="smoothScroll">Register</a>
+          </li>
+          <hr class="slide" style="display:none">
+        </ul>
+      </div>
+    </div>
+  </div>
+  <a name = "homeContainer"></a>
+  <div class="homeContainer">
+    <img alt="Logo" class="img-responsive center-block" src="images/Logo_(1088x256).png">
+  </div>
+  <div class="content aboutContainer">
+    <a class="anchor first" name = "aboutContainer"></a>
+    <div class="text">
+      <h1>About hillsHacks</h1>
+      <p>hillsHacks is the very first hackathon hosted by Watchung Hills. A hackathon is an event where a large number of people come together to collaboratively code computer programs and work on programing projects.</p>
+      <p>The theme for hillsHacks 2017 is “Coding the Classroom”, which will challenge attendees to improve the classroom experience for both students and teachers through innovative technological solutions. During the event, participants will work on their own project (either individually or in groups), which can be anything coding related, including websites, apps, games, robots, and more, as long as it fits the theme. There will also be workshops and mentors throughout the event to guide participants along and to teach coding to beginners. No experience is required to attend!</p>
+      <p>At the end of the day, everybody showcases what they’ve been working on, and judges will select a few projects to win prizes. Importantly, the prizes are not the main focus of the event, they are only meant to reward participants for their hard work.</p>
+    </div>
+  </div>
+  <div class="content faqContainer">
+    <a class="anchor second"  name = "faqContainer"></a>
+    <div class="text">
+      <h1>FAQ</h1>
+      <p>
+        <h4>Why come to hillsHacks?</h4>
+        Computer science is on the path to near ubiquity worldwide, and attending hackathons is a great way to develop your knowledge in coding. Regardless of your experience, you will learn something new at hillsHacks. All students grade 7 and up are welcome.
+      </p>
+      <p>
+        <h4>What if I don’t know anything about coding or computer science?</h4>
+        hillsHacks is your opportunity to learn!
+      </p>
+      <p>
+        <h4>I’m an expert at coding. What do I get out of this event?</h4>
+        As the first high school hackathon with a theme of educational technology, you’ll have the unique opportunity to apply your skills and create something that can help improve classrooms, possibly winning prizes as well. Also, by being with other people interested in computer science, you are bound to learn something new.
+      </p>
+      <p>
+        <h4>This sounds like a long day, will there be food?</h4>
+        Of course! All participants will be given standardized boxed lunches, which include a sandwich (turkey, ham, or vegetarian), chips, cookies, and water. Snacks will also be available for purchase throughout the day.
+      </p>
+    </div>
+  </div>
+  <div class="content registerContainer">
+    <a class="anchor third"  name = "registerContainer"></a>
+    <div class="text">
+      <h1>Register</h1>
+      <p>
+        Sign up <a href="register/index.html">here</a>. A small admission fee of $10 is needed to cover the costs of lunch and a t-shirt. In order to attend, online registration and payment must be completed by 1/15. 
+      </p>
+    </div>
+  </div>
+  <footer style="height: 200px; background-color: #222222">
+    <p style="line-height: 200px; text-align: center; color: white;">Web Design by Zachary Young, Peter Linder, and Andrew Song</p>
+  </footer>
 </body>
 </html>
