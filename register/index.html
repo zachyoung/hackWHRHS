@@ -21,34 +21,45 @@
 </head>
 <body class="body">
 	<form action="" method="post">
+		<div class= "header">
+			<img alt="Logo" class="img-responsive center-block" src="Logo_(1088x256).png">
+			<h1>Registration</h1>
+		</div>
 		<div class="group">
-			<input type="text" id="fullname" name="fullname" required="required" />
-			<label for="fullname">Full name</label>
+			<input type="text" id="firstname" name="firstname" required="required" />
+			<label for="frstname">First name</label>
 			<div class="bar"></div>
 		</div>
+			<div class="group">
+				<input type="text" id="lastname" name="lastname" required="required" />
+				<label for="lastname">Last name</label>
+				<div class="bar"></div>
+			</div>
+	
 		<div class="group">
-			<input type="email" id="email" name="email" required="required" />
-			<label for="email">Your email</label>
-			<div class="bar"></div>
-			(Don't worry. We won't spam you.)
-		</div>
-		<div class="group">
-			<input type="text" id="school" name="school" required="required" />
-			<label for="school">Your school</label>
-			<div class="bar"></div>
-		</div>
-		<div class="group">
-			<select id="shirt" name="shirt">
-				<option selected value="hide">Your current grade</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
-			</select>
-		</div>
-		<div class="group">
+				<input type="text" id="email" name="email" required="required" />
+				<label for="email">Your email</label>
+				<div class="bar"></div>
+				(Don't worry. We won't spam you.)
+			</div>
+			<div class="group">
+				<input type="text" id="school" name="school" required="required" />
+				<label for="school">Your school</label>
+				<div class="bar"></div>
+			</div>
+		<div class="groupD">
+				<select id="grade" name="grade">
+					<option selected value="hide">Your current grade</option>
+					<option value="7">Grade 7</option>
+					<option value="8">Grade 8</option>
+					<option value="9">Grade 9</option>
+					<option value="10">Grade 10</option>
+					<option value="11">Grade 11</option>
+					<option value="12">Grade 12</option>
+				</select>
+			</div>
+
+		<div class="groupD">
 			<select id="experience" name="experience">
 				<option selected value="hide">Your programming experience</option>
 				<option value="none">None</option>
@@ -56,22 +67,26 @@
 				<option value="experienced">Experienced</option>
 			</select>
 		</div>
-		<div class="group">
+		<div class="groupD">
 			<select id="food" name="food">
 				<option selected value="hide">Your food preferences</option>
 				<option value="none">None</option>
 				<option value="vegetarian">Vegetarian</option>
 			</select>
 		</div>
-		<div class="group">
+		<div class="groupD">
 			<select id="shirt" name="shirt">
 				<option selected value="hide">Your shirt size</option>
-				<option value="S">S</option>
-				<option value="M">M</option>
-				<option value="L">L</option>
-				<option value="XL">XL</option>
+				<option value="S">Small</option>
+				<option value="M">Medium</option>
+				<option value="L">Large</option>
+				<option value="XL">X-Large</option>
 			</select>
 		</div>
 	</form>
+	<div style="text-align:center;"">
+		<a class="button" href="#" role="button">Continue</a>
+	</div>
+
 </body>
 </html>
