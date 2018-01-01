@@ -3,7 +3,8 @@
 }
 
 .body {
-  //background-color: #242423;
+  /*background-color: #242423;*/
+  font-family: sans-serif;
 }
 .group {
 	width: 100%;
@@ -42,7 +43,7 @@ label {
 	transition: .25s ease;
 }
 
-input {
+input:not(.button) {
 	display: block;
 	width: 100%;
 	padding-top: 36.66667px;

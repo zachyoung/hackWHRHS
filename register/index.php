@@ -1,3 +1,54 @@
+<?php
+	$error = '';
+	function createCSV($data){
+		$rows = '';
+		$row1 = [];
+		foreach ($data[0] as $key => $value){
+			array_push($row1, '"' . $key . '"');
+		}
+		$rows .= implode(',', $row1) . "\n";
+		foreach ($data as $dataRow){
+			$row = [];
+			foreach ($dataRow as $value){
+				array_push($row, '"' . $value . '"');
+			}
+			$rows .= implode(',', $row) . "\n";
+		}
+		file_put_contents('./registrations.csv', $rows);
+	}
+	if (isset($_POST['fullname']) && isset($_POST['email']) && isset($_POST['school']) && isset($_POST['grade'])
+			&& isset($_POST['experience']) && isset($_POST['food']) && isset($_POST['shirt'])) {
+		$data = json_decode(file_get_contents('./data.json'), true);
+		$registrant = array(
+			'name' => $_POST['fullname'],
+			'email' => $_POST['email'],
+			'school' => $_POST['school'],
+			'grade' => $_POST['grade'],
+			'experience' => $_POST['experience'],
+			'food' => $_POST['food'],
+			'shirt' => $_POST['shirt']
+		);
+		if ($registrant['grade'] == '7' || $registrant['grade'] == '8'){
+			$middle_schoolers = 0;
+			foreach ($data as $value){
+				if ($value['grade'] == '7' || $value['grade'] == '8') $middle_schoolers++;
+			}
+			if ($middle_schoolers >= 30){
+				$error = 'Sorry, we have already reached the maximum amount of middle schoolers we can accomodate.';
+			} else {
+				array_push($data, $registrant);
+				file_put_contents('./data.json', json_encode($data));
+				createCSV($data);
+				header('Location: ./registered.php');
+			}
+		} else {
+			array_push($data, $registrant);
+			file_put_contents('./data.json', json_encode($data));
+			createCSV($data);
+			header('Location: ./registered.php');
+		}
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,31 +59,23 @@
 	<title>Register | hackWHRHS</title>
 	<script src="../js/jquery-1.11.2.min.js"></script>
 	<script src="inputs.js"></script>
-	<script>
-		window.addEventListener("load", function(){
-			var form = document.getElementsByTagName("form")[0];
-				form.addEventListener("submit", function(event){
-				event.preventDefault();
-				//Add some validation stuff here
-				form.submit();
-			}, false);
-		}, false);
-	</script>
 </head>
 <body class="body">
 	<form action="" method="post">
 		<div class= "header">
-			<img alt="Logo" class="img-responsive center-block" src="Logo_(1088x256).png">
+			<a href="/">
+				<img alt="Logo" class="img-responsive center-block" src="Logo_(1088x256).png">
+			</a>
 			<h1>Registration</h1>
 		</div>
+		<?php
+			if (strlen($error) > 0){
+				echo '<p style="color: red;">' . $error . '</p>';
+			}
+		?>
 		<div class="group">
-			<input type="text" id="firstname" name="firstname" required="required" />
-			<label for="frstname">First name</label>
-			<div class="bar"></div>
-		</div>
-		<div class="group">
-			<input type="text" id="lastname" name="lastname" required="required" />
-			<label for="lastname">Last name</label>
+			<input type="text" id="fullname" name="fullname" required="required" />
+			<label for="fullname">Full name</label>
 			<div class="bar"></div>
 		</div>
 		<div class="group">
@@ -82,9 +125,9 @@
 				<option value="XL">X-Large</option>
 			</select>
 		</div>
+		<div style="text-align:center;">
+			<input type="submit" class="button" value="Continue" />
+		</div>
 	</form>
-	<div style="text-align:center;"">
-		<a class="button" href="#" role="button">Continue</a>
-	</div>
 </body>
 </html>
